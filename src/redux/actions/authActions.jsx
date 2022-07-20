@@ -18,7 +18,9 @@ export const registerUser = (userData, history) => (dispatch) => {
   });
   axios
     .post(URL + "api/users/register", userData)
-    .then((res) => (window.location.href = URL + "/login")) // re-direct to login on successful register
+    .then(
+      (res) => (window.location.href = "https://tank-sensor.vercel.app/login")
+    ) // re-direct to login on successful register
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
