@@ -3,11 +3,22 @@ import setAuthToken from "../../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types"; // Register User
 import { URL } from "../../config.js";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Switch,
+  useNavigate,
+} from "react-router-dom";
 
 export const registerUser = (userData, history) => (dispatch) => {
+  dispatch({
+    type: GET_ERRORS,
+    payload: "",
+  });
   axios
     .post(URL + "api/users/register", userData)
-    .then((res) => history.push("/login")) // re-direct to login on successful register
+    .then((res) => (window.location.href = URL + "/login")) // re-direct to login on successful register
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -16,6 +27,10 @@ export const registerUser = (userData, history) => (dispatch) => {
     );
 }; // Login - get user token
 export const loginUser = (userData) => (dispatch) => {
+  dispatch({
+    type: GET_ERRORS,
+    payload: "",
+  });
   axios
     .post(URL + "api/users/login", userData)
     .then((res) => {
