@@ -1,2 +1,2 @@
 // export const URL = "http://localhost:5000/";
-export const URL = "https://truck-sensor-backend.herokuapp.com/";
+export const URL = "https://tank-sensor.herokuapp.com/";
